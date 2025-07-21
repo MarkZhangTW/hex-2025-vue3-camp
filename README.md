@@ -3,6 +3,7 @@
 
 ## GitHub Pages
 
+- [課前影音 - Vite CDN](./Pre1ViteCDN/)
 - [課前影音 - Vite 環境](./Pre1ViteEnv/)
 
 ## Issues
