@@ -27,7 +27,7 @@ Push Pre1ViteCDN to `gh-pages`
 
 ```shell
 # Stash uncommitted changes
-git stash push -u -m "stash changes before switching"
+git stash push -m "stash changes before switching"
 git switch gh-pages
 git checkout main -- Pre1ViteCDN/index.html
 git checkout main -- Pre1ViteCDN/main.js
