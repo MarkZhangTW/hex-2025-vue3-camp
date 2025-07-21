@@ -13,9 +13,12 @@ The following steps show how to manually create an orphan barnch `gh-pages` for 
 
 ```shell
 # Stash uncommitted changes
-git stash push -u -m "stash changes before switching"
+git stash push -m "stash changes before switching"
 # Create orphan branch gh-pages
 git switch --orphan gh-pages
+git checkout main -- README.md
+git commit -m "Update"
+git push --set-upstream origin gh-pages
 git switch main
 git stash pop
 ```
@@ -26,12 +29,10 @@ Push Pre1ViteCDN to `gh-pages`
 # Stash uncommitted changes
 git stash push -u -m "stash changes before switching"
 git switch gh-pages
-git checkout main -- Pre1ViteCDN/
-# Remove hidden files
-rm Pre1ViteCDN/.*
-git add Pre1ViteCDN
+git checkout main -- Pre1ViteCDN/index.html
+git checkout main -- Pre1ViteCDN/main.js
 git commit -m "Update"
-git push --set-upstream origin gh-pages
+git push
 git switch main
 git stash pop
 ```
