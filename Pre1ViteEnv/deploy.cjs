@@ -4,7 +4,7 @@ const path = require('path');
 
 const dest = path.basename(__dirname);
 const tmpdir = 'ghpages-tmp';
-const projects = ['Pre1ViteCDN', 'Pre1ViteEnv'];
+const projects = ['Pre1ViteCDN'];
 const excludes = projects.concat(tmpdir, '.git');
 
 ghpages.publish('dist', {
