@@ -1,15 +1,15 @@
 # Hex2025Vue3Camp
+
 六角學院 2025 Vue3 前端新手營
+
 
 ## GitHub Pages
 
 - [課前影音 - Vite CDN](./Pre1ViteCDN/)
 - [課前影音 - Vite 環境](./Pre1ViteEnv/)
 
-## Issues
 
-- `gh-pages` NPM package may include hidden files (dotfiles) when the `gh-pages` branch does not yet exist.
-    To prevent this issue, ensure the `gh-pages` branch is created manually before deploying with the `gh-pages` package.
+## Notes
 
 ### Create Orphan Branch
 
@@ -59,3 +59,9 @@ git push
 cd ..
 git worktree remove tmp
 ```
+
+
+## Issues
+
+- `gh-pages` NPM package may include hidden files (dotfiles) when the `gh-pages` branch does not yet exist.
+    To prevent this issue, ensure the `gh-pages` branch is created manually before deploying with the `gh-pages` package.
