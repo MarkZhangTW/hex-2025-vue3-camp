@@ -34,6 +34,19 @@ git push origin --delete gh-pages
 git branch -d gh-pages
 ```
 
+### Push README.md to `gh-pages`
+
+```shell
+git worktree add tmp gh-pages
+cd tmp
+git pull
+git checkout main -- README.md
+git commit -m "Update README.md for GitHub Pages"
+git push
+cd ..
+git worktree remove tmp
+```
+
 ### Push Pre1ViteCDN to `gh-pages`
 
 ```shell
