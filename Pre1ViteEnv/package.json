@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "deploy": "vite build && gh-pages-clean && node deploy.cjs"
+    "deploy": "vite build && gh-pages-clean && gh-pages -d dist --add --dest Pre1ViteEnv"
   },
   "dependencies": {
     "vue": "^3.5.17"
