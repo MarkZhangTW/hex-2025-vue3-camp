@@ -10,6 +10,17 @@ export default defineConfig([
     files: ['**/*.{js,mjs,jsx,vue}'],
   },
 
+  {
+    name: 'scripts/cjs-node',
+    files: ['scripts/**/*.cjs'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        ...globals.node,
+      }
+    }
+  },
+
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
   {
