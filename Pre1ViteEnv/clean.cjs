@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 'use strict';
+const path = require('path');
 const fs = require('fs-extra');
 
-const path = require('path');
 const distPath = path.join(__dirname, 'dist');
 
 fs.remove(distPath)
