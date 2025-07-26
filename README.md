@@ -37,13 +37,6 @@ cd ..
 git worktree remove tmp
 ```
 
-### Delete Branch
-
-```shell
-git push origin --delete gh-pages
-git branch -d gh-pages
-```
-
 ### Push README.md to `gh-pages`
 
 ```shell
@@ -70,6 +63,64 @@ cd ..
 git worktree remove tmp
 ```
 
+### Git
+
+#### Create/Switch Branch
+
+Create and switch to a new branch:
+
+```shell
+# Option 1: Create the branch, then switch to it
+git branch feature/my-new-feature
+git switch feature/my-new-feature
+
+# Option 2: Create and switch in one step (recommended)
+git switch -c feature/my-new-feature
+
+# Option 3: Legacy equivalent using `checkout`
+git checkout -b feature/my-new-feature
+```
+
+#### Delete Branch
+
+Delete remote branch:
+
+```shell
+git push origin --delete my-branch-name
+```
+
+Delete local branch:
+
+```shell
+git branch -d my-branch-name
+# Or force delete (if not merged yet)
+git branch -D my-branch-name
+```
+
+#### Recommended Branch Naming Pattern
+
+```text
+[purpose]/[topic-or-description]
+```
+
+Suggested prefixes:
+- `practice/`: for learning or coding drills
+- `experiment/` or `sandbox/`: for trying new tech
+- `demo/`: for presentation or example setups
+- `feature/`: for real app features
+- `bugfix/` or `fix/`: for bug fixing
+
+Use **kebab-case** for consistency: `feature/my-new-feature`
+
+#### Partial Staging
+
+Add partial change for committing (e.g. for separate purposes):
+
+```shell
+git add -p path/to/file
+```
+
+This allows you to interactively stage code block by block (hunk by hunk).
 
 ## Issues
 
