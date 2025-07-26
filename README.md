@@ -123,6 +123,48 @@ git add -p path/to/file
 
 This allows you to interactively stage code block by block (hunk by hunk).
 
+
+### Git/GitHub Sign Commit
+
+#### GPG
+
+The traditional way to sign Git commits.
+Widely supported across platforms, including GitHub, GitLab, Bitbucket, and more.
+
+#### SSH
+
+A simpler and more modern method to sign Git commits.
+Fully supported by GitHub, but may not be supported by all Git platforms.
+
+```shell
+# 1. Generate SSH key pair for signing (recommended: separate from your push key)
+ssh-keygen -t ed25519 -f ~/.ssh/id_signing -C "your@email.com"
+
+# 2. Upload the public key to GitHub → [SSH and GPG keys](https://github.com/settings/keys)
+cat ~/.ssh/id_signing.pub
+# → Select "Signing Key" as the key type when adding
+
+# 3. Configure Git to sign commits by default (optional)
+git config --global commit.gpgsign true
+
+# 4. Tell Git to use SSH for signing
+git config --global gpg.format ssh
+
+# 5. Set your signing key (this must be the private key path, not .pub)
+git config --global user.signingkey ~/.ssh/id_signing
+
+# 6. Sign a commit manually (if auto-sign is disabled)
+git commit -S -m "Your message"
+```
+
+Sign must happen with commit.
+Re-sign existing commit is just like recreate the git repo. Not recommend for co-operated project.
+
+```shell
+git rebase -i --root
+```
+
+
 ## Issues
 
 ### Hidden Files Included on First Deploy
