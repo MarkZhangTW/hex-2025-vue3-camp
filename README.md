@@ -11,6 +11,16 @@
 
 ## Notes
 
+### Create Vite Vue Project
+
+```shell
+# Option 1: create project with create-vite (select **Vue** when prompted)
+npm create vite@latest
+
+# Option 2: create project with create-vue (Vue 3 + Vite by default)
+npm create vue@latest
+```
+
 ### Create Orphan Branch
 
 The following steps show how to manually create an orphan barnch `gh-pages` for GitHub Pages.
