@@ -73,5 +73,9 @@ git worktree remove tmp
 
 ## Issues
 
-- `gh-pages` NPM package may include hidden files (dotfiles) when the `gh-pages` branch does not yet exist.
-    To prevent this issue, ensure the `gh-pages` branch is created manually before deploying with the `gh-pages` package.
+### Hidden Files Included on First Deploy
+
+When deploying with `gh-pages`, hidden files (dotfiles) such as `.gitattributes`, `.gitignore`, and others may be included in the newly created orphan branch `gh-pages`.  
+**Workaround:**  
+Manually create the orphan branch `gh-pages` before deploying with `gh-pages`.  
+You can follow the steps in the ["Create Orphan Branch"](#create-orphan-branch) section above to do this.
