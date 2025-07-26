@@ -5,9 +5,9 @@
 
 ## GitHub Pages
 
-- [課前影音 - Vite CDN](./00-vite-cdn/)
-- [課前影音 - Vite 環境](./00-vite-env/)
-- [課前影音 - Vite Template](./00-vite-template/)
+- [課前 - Vite CDN](./00-vite-cdn/)
+- [課前 - Vite 環境](./00-vite-env/)
+- [課前 - Vite Template](./00-vite-template/)
 
 
 ## Notes
