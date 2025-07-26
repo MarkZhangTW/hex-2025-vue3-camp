@@ -5,8 +5,8 @@
 
 ## GitHub Pages
 
-- [課前影音 - Vite CDN](./Pre1ViteCDN/)
-- [課前影音 - Vite 環境](./Pre1ViteEnv/)
+- [課前影音 - Vite CDN](./00-vite-cdn/)
+- [課前影音 - Vite 環境](./00-vite-env/)
 
 
 ## Notes
@@ -50,14 +50,14 @@ cd ..
 git worktree remove tmp
 ```
 
-### Push Pre1ViteCDN to `gh-pages`
+### Push 00-vite-cdn to `gh-pages`
 
 ```shell
 git worktree add tmp gh-pages
 cd tmp
-git checkout main -- Pre1ViteCDN/index.html
-git checkout main -- Pre1ViteCDN/main.js
-git commit -m "Update Pre1ViteCND to GitHub Pages"
+git checkout main -- 00-vite-cdn/index.html
+git checkout main -- 00-vite-cdn/main.js
+git commit -m "Update 00-vite-cdn to GitHub Pages"
 git push
 cd ..
 git worktree remove tmp
