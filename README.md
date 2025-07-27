@@ -157,12 +157,21 @@ git config --global user.signingkey ~/.ssh/id_signing
 git commit -S -m "Your message"
 ```
 
-Sign must happen with commit.
-Re-sign existing commit is just like recreate the git repo. Not recommend for co-operated project.
+Signing must happen at the time of commit.
+Re-signing an existing commit requires rewriting Git history (it's recreating a new commit).
+Not recommended for collaborative projects, especially on shared branches like `main`.
 
 ```shell
-git rebase -i --root
+# Re-sign all commits starting from the first commit:
+git rebase --exec 'git commit --amend --no-edit -n -S' -i --root
+# Or, re-sign from the second commit, if the first was created on GitHub (GitHub signs it automatically):
+git rebase --exec 'git commit --amend --no-edit -n -S' -i $(git log --reverse --format=%h | sed -n 2p)^1
 ```
+
+Re-signing main will:
+- Break the commit ancestry for other branches — they will no longer share a common base with the new `main`
+- Change commit hashes — re-signing rewrites history by recreating new commits
+- Update commit timestamps — unless `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` are explicitly preserved during rebase
 
 
 ## Issues
