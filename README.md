@@ -124,14 +124,16 @@ git add -p path/to/file
 This allows you to interactively stage code block by block (hunk by hunk).
 
 
-### Git/GitHub Sign Commit
+### Git/GitHub Commit Signing
 
-#### GPG
+Commit signing helps verify the authorship and integrity of your commits, ensuring that changes come from trusted sources and have not been tampered with.
+
+#### GPG Signing
 
 The traditional way to sign Git commits.
 Widely supported across platforms, including GitHub, GitLab, Bitbucket, and more.
 
-#### SSH
+#### SSH Signing
 
 A simpler and more modern method to sign Git commits.
 Fully supported by GitHub, but may not be supported by all Git platforms.
@@ -157,6 +159,8 @@ git config --global user.signingkey ~/.ssh/id_signing
 git commit -S -m "Your message"
 ```
 
+#### Re-signing Commits
+
 Signing must happen at the time of commit.
 Re-signing an existing commit requires rewriting Git history (it's recreating a new commit).
 Not recommended for collaborative projects, especially on shared branches like `main`.
@@ -165,13 +169,16 @@ Not recommended for collaborative projects, especially on shared branches like `
 # Re-sign all commits starting from the first commit:
 git rebase --exec 'git commit --amend --no-edit -n -S' -i --root
 # Or, re-sign from the second commit, if the first was created on GitHub (GitHub signs it automatically):
-git rebase --exec 'git commit --amend --no-edit -n -S' -i $(git log --reverse --format=%h | sed -n 2p)^1
+git rebase --exec 'git commit --amend --no-edit -n -S' -i $(git log --reverse --format=%h | sed -n 2p)^
 ```
 
-Re-signing main will:
+Re-signing `main` will:
 - Break the commit ancestry for other branches — they will no longer share a common base with the new `main`
 - Change commit hashes — re-signing rewrites history by recreating new commits
 - Update commit timestamps — unless `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` are explicitly preserved during rebase
+
+Re-signing a branch becomes tedious if `main` has already been re-signed.
+It’s recommended to rebase the branch onto the new `main` first, then perform the re-signing.
 
 
 ## Issues
