@@ -123,6 +123,16 @@ git add -p path/to/file
 
 This allows you to interactively stage code block by block (hunk by hunk).
 
+#### Undo Commit
+
+```shell
+git reset HEAD~        # Undo commit, keep changes unstaged
+git reset --soft HEAD~ # Undo commit, keep changes staged
+git reset --hard HEAD~ # Undo commit, discard all changes
+```
+
+> **Warning:** Using `--hard` will permanently discard all local changes in your working directory and cannot be undone. Make sure you do not have uncommitted work you want to keep.
+
 
 ### Git/GitHub Commit Signing
 
