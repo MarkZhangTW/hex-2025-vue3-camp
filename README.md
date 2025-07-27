@@ -143,6 +143,33 @@ Commit signing helps verify the authorship and integrity of your commits, ensuri
 The traditional way to sign Git commits.
 Widely supported across platforms, including GitHub, GitLab, Bitbucket, and more.
 
+```shell
+# 1. Generating a new GPG key
+gpg --full-generate-key
+
+# 2. Upload the public key to GitHub → [SSH and GPG keys](https://github.com/settings/keys)
+# If you only have one key:
+gpg --armor --export
+# If you have multiple keys:
+gpg --list-secret-keys --keyid-format=long # Find the key ID
+gpg --armor --export <KEY_ID>              # Export the public key
+
+# 3. Enable Git commit signing by default (optional)
+git config --global commit.gpgsign true
+
+# 4. Ensure Git is set to use GPG for signing (unset if you used SSH before)
+git config --global --unset gpg.format     #GPG is the default
+
+# 5. Configure Git to use your GPG key
+git config --global user.signingkey <KEY_ID>
+
+# 6. Sign a commit manually (if not using auto-sign)
+git commit -S -m "Your message"
+
+# 7. Verify the signature of the last commit
+git log --show-signature -1
+```
+
 #### SSH Signing
 
 A simpler and more modern method to sign Git commits.
