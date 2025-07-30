@@ -8,6 +8,7 @@
 - [課前1 - Vue CDN](./00-pre1-vue-cdn/)
 - [課前1 - Vue 環境](./00-pre1-vue-env/)
 - [課前2 - Vue Template](./00-pre2-vue-template/)
+- [課前3 - 2024 第一週](./00-pre3-2024-week1/)
 
 
 ## Notes
