@@ -1,5 +1,5 @@
 {
-  "name": "00-vue-2024-week1",
+  "name": "00-pre2-vue-template",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "deploy": "vite build && gh-pages -d dist --add --dest 00-vue-2024-week1"
+    "deploy": "vite build && gh-pages -d dist --add --dest 00-pre2-vue-template"
   },
   "dependencies": {
     "vue": "^3.5.17"

@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/hex-2025-vue3-camp/00-vite-template/',
+  base: '/hex-2025-vue3-camp/00-pre2-vue-template/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {

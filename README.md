@@ -5,9 +5,9 @@
 
 ## GitHub Pages
 
-- [課前 - Vite CDN](./00-vite-cdn/)
-- [課前 - Vite 環境](./00-vite-env/)
-- [課前 - Vite Template](./00-vite-template/)
+- [課前1 - Vue CDN](./00-pre1-vue-cdn/)
+- [課前1 - Vue 環境](./00-pre1-vue-env/)
+- [課前2 - Vue Template](./00-pre2-vue-template/)
 
 
 ## Notes
@@ -51,14 +51,14 @@ cd ..
 git worktree remove tmp
 ```
 
-### Push 00-vite-cdn to `gh-pages`
+### Push 00-pre1-vue-cdn to `gh-pages`
 
 ```shell
 git worktree add tmp gh-pages
 cd tmp
-git checkout main -- 00-vite-cdn/index.html
-git checkout main -- 00-vite-cdn/main.js
-git commit -m "Update 00-vite-cdn to GitHub Pages"
+git checkout main -- 00-pre1-vue-cdn/index.html
+git checkout main -- 00-pre1-vue-cdn/main.js
+git commit -m "Update 00-pre1-vue-cdn to GitHub Pages"
 git push
 cd ..
 git worktree remove tmp
