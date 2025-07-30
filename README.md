@@ -5,9 +5,10 @@
 
 ## GitHub Pages
 
-- [課前 - Vite CDN](./00-vite-cdn/)
-- [課前 - Vite 環境](./00-vite-env/)
-- [課前 - Vite Template](./00-vite-template/)
+- [課前1 - Vue CDN](./00-pre1-vue-cdn/)
+- [課前1 - Vue 環境](./00-pre1-vue-env/)
+- [課前2 - Vue Template](./00-pre2-vue-template/)
+- [課前3 - 2024 第一週](./00-pre3-2024-week1/)
 
 
 ## Notes
@@ -51,14 +52,14 @@ cd ..
 git worktree remove tmp
 ```
 
-### Push 00-vite-cdn to `gh-pages`
+### Push 00-pre1-vue-cdn to `gh-pages`
 
 ```shell
 git worktree add tmp gh-pages
 cd tmp
-git checkout main -- 00-vite-cdn/index.html
-git checkout main -- 00-vite-cdn/main.js
-git commit -m "Update 00-vite-cdn to GitHub Pages"
+git checkout main -- 00-pre1-vue-cdn/index.html
+git checkout main -- 00-pre1-vue-cdn/main.js
+git commit -m "Update 00-pre1-vue-cdn to GitHub Pages"
 git push
 cd ..
 git worktree remove tmp
@@ -122,6 +123,101 @@ git add -p path/to/file
 ```
 
 This allows you to interactively stage code block by block (hunk by hunk).
+
+#### Undo Commit
+
+```shell
+git reset HEAD~        # Undo commit, keep changes unstaged
+git reset --soft HEAD~ # Undo commit, keep changes staged
+git reset --hard HEAD~ # Undo commit, discard all changes
+```
+
+> **Warning:** Using `--hard` will permanently discard all local changes in your working directory and cannot be undone. Make sure you do not have uncommitted work you want to keep.
+
+
+### Git/GitHub Commit Signing
+
+Commit signing helps verify the authorship and integrity of your commits, ensuring that changes come from trusted sources and have not been tampered with.
+
+#### GPG Signing
+
+The traditional way to sign Git commits.
+Widely supported across platforms, including GitHub, GitLab, Bitbucket, and more.
+
+```shell
+# 1. Generating a new GPG key
+gpg --full-generate-key
+
+# 2. Upload the public key to GitHub → [SSH and GPG keys](https://github.com/settings/keys)
+# If you only have one key:
+gpg --armor --export
+# If you have multiple keys:
+gpg --list-secret-keys --keyid-format=long # Find the key ID
+gpg --armor --export <KEY_ID>              # Export the public key
+
+# 3. Enable Git commit signing by default (optional)
+git config --global commit.gpgsign true
+
+# 4. Ensure Git is set to use GPG for signing (unset if you used SSH before)
+git config --global --unset gpg.format     #GPG is the default
+
+# 5. Configure Git to use your GPG key
+git config --global user.signingkey <KEY_ID>
+
+# 6. Sign a commit manually (if not using auto-sign)
+git commit -S -m "Your message"
+
+# 7. Verify the signature of the last commit
+git log --show-signature -1
+```
+
+#### SSH Signing
+
+A simpler and more modern method to sign Git commits.
+Fully supported by GitHub, but may not be supported by all Git platforms.
+
+```shell
+# 1. Generate SSH key pair for signing (recommended: separate from your push key)
+ssh-keygen -t ed25519 -f ~/.ssh/id_signing -C "your@email.com"
+
+# 2. Upload the public key to GitHub → [SSH and GPG keys](https://github.com/settings/keys)
+cat ~/.ssh/id_signing.pub
+# → Select "Signing Key" as the key type when adding
+
+# 3. Configure Git to sign commits by default (optional)
+git config --global commit.gpgsign true
+
+# 4. Tell Git to use SSH for signing
+git config --global gpg.format ssh
+
+# 5. Set your signing key (this must be the private key path, not .pub)
+git config --global user.signingkey ~/.ssh/id_signing
+
+# 6. Sign a commit manually (if auto-sign is disabled)
+git commit -S -m "Your message"
+```
+
+#### Re-signing Commits
+
+Signing must happen at the time of commit.
+Re-signing an existing commit requires rewriting Git history (it's recreating a new commit).
+Not recommended for collaborative projects, especially on shared branches like `main`.
+
+```shell
+# Re-sign all commits starting from the first commit:
+git rebase --exec 'git commit --amend --no-edit -n -S' -i --root
+# Or, re-sign from the second commit, if the first was created on GitHub (GitHub signs it automatically):
+git rebase --exec 'git commit --amend --no-edit -n -S' -i $(git log --reverse --format=%h | sed -n 2p)^
+```
+
+Re-signing `main` will:
+- Break the commit ancestry for other branches — they will no longer share a common base with the new `main`
+- Change commit hashes — re-signing rewrites history by recreating new commits
+- Update commit timestamps — unless `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` are explicitly preserved during rebase
+
+Re-signing a branch becomes tedious if `main` has already been re-signed.
+It’s recommended to rebase the branch onto the new `main` first, then perform the re-signing.
+
 
 ## Issues
 
