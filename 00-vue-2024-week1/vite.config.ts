@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/hex-2025-vue3-camp/00-vue-2024-week1/',
   plugins: [
     vue(),
     vueDevTools(),
